@@ -9,6 +9,7 @@ export class AuthController {
   }
   @Post('users/signup')
   signUp(@Body() createUserDto: CreateUserDto): CreateUserDto {
+    throw new Error('unhandled');
     return {
       email: createUserDto.email,
       password: createUserDto.password,
