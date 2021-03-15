@@ -3,6 +3,12 @@ version: "3.9"
 services:
   nest:
     container_name: nest
+    # links:
+    #   - mongodb
+    depends_on:
+      - mongodb
+    networks:
+      - webnet
     build:
       context: ./ticket-nest
       target: development
@@ -13,3 +19,16 @@ services:
       - 3000:3000
       - 9229:9229
     command: npm run start:dev
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    # volumes:
+    #   - mongodata:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - webnet
+networks:
+  webnet:
+# volumes:
+#   mongodata:

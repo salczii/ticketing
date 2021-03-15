@@ -5,7 +5,12 @@ import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [AuthModule],
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost', {
+      useNewUrlParser: true,
+    }),
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
